@@ -88,33 +88,14 @@ const DashboardLayout = () => {
 
       {/* Main content */}
       <div className="lg:pl-64">
-        {/* Top navigation */}
-        <div className="sticky top-0 z-10 bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-              >
-                <FiMenu className="text-xl" />
-              </button>
-              
-              <h1 className="ml-4 lg:ml-0 text-2xl font-bold text-gray-900">
-                {location.pathname.includes('counselor') ? 'Counselor Dashboard' : 'Admin Dashboard'}
-              </h1>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span>Online</span>
-              </div>
-              
-              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                <FiUsers className="text-gray-600" />
-              </div>
-            </div>
-          </div>
+        {/* Mobile menu button */}
+        <div className="lg:hidden fixed top-4 left-4 z-40">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 rounded-md bg-white shadow-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+          >
+            <FiMenu className="text-xl" />
+          </button>
         </div>
 
         {/* Page content */}

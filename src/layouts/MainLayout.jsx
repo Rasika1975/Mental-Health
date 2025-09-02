@@ -1,16 +1,20 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 
 const MainLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-100">
-      <Navbar />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-gray-50">
+      <Sidebar />
+      <div className="lg:ml-64">
+        <main className="min-h-screen">
+          <div className="px-4 sm:px-6 lg:px-8 py-6">
+            <Outlet />
+          </div>
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };

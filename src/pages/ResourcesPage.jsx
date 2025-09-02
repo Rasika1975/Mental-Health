@@ -134,15 +134,16 @@ const ResourcesPage = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Mental Health Resource Hub</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Access a comprehensive collection of videos, audio guides, articles, and exercises 
-          designed to support your mental wellness journey.
-        </p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-6xl mx-auto py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Mental Health Resource Hub</h1>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Access a comprehensive collection of videos, audio guides, articles, and exercises 
+            designed to support your mental wellness journey.
+          </p>
+        </div>
 
       {/* Search and Filter */}
       <div className="mb-8 bg-white rounded-xl shadow-lg p-6">
@@ -275,34 +276,35 @@ const ResourcesPage = () => {
         </div>
       )}
 
-      {/* Emergency Resources */}
-      <div className="mt-16 bg-red-50 border border-red-200 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-red-800 mb-4">Emergency Resources</h2>
-        <p className="text-red-700 mb-6">
-          If you're experiencing a mental health crisis or having thoughts of self-harm, please reach out immediately:
-        </p>
-        
-        <div className="grid md:grid-cols-3 gap-4">
-          <a
-            href="tel:988"
-            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
-          >
-            Crisis Lifeline: 988
-          </a>
+        {/* Emergency Resources */}
+        <div className="mt-16 bg-red-50 border border-red-200 rounded-xl p-8">
+          <h2 className="text-2xl font-bold text-red-800 mb-4">Emergency Resources</h2>
+          <p className="text-red-700 mb-6">
+            If you're experiencing a mental health crisis or having thoughts of self-harm, please reach out immediately:
+          </p>
           
-          <a
-            href="tel:911"
-            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
-          >
-            Emergency: 911
-          </a>
-          
-          <a
-            href="/chatbot"
-            className="flex items-center justify-center px-6 py-3 border-2 border-red-600 text-red-600 font-medium rounded-md hover:bg-red-50 transition-colors"
-          >
-            Chat Support Now
-          </a>
+          <div className="grid md:grid-cols-3 gap-4">
+            <a
+              href="tel:988"
+              className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+            >
+              Crisis Lifeline: 988
+            </a>
+            
+            <a
+              href="tel:911"
+              className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+            >
+              Emergency: 911
+            </a>
+            
+            <a
+              href="/chatbot"
+              className="flex items-center justify-center px-6 py-3 border-2 border-red-600 text-red-600 font-medium rounded-md hover:bg-red-50 transition-colors"
+            >
+              Chat Support Now
+            </a>
+          </div>
         </div>
       </div>
     </div>
