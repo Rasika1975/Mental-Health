@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
-import { FiPlay, FiDownload, FiBookOpen, FiHeadphones, FiVideo, FiFileText, FiSearch, FiFilter } from 'react-icons/fi';
+import React, { useState, useEffect } from 'react';
+import { 
+  FiPlay, FiDownload, FiBookOpen, FiHeadphones, FiVideo, FiFileText, FiSearch, FiFilter,
+  FiHeart, FiStar, FiClock, FiGlobe, FiMoon, FiSun, FiVolume2, FiBookmark, FiChevronDown,
+  FiMessageCircle, FiPhone, FiAlertTriangle, FiSettings, FiUser, FiMenu, FiX
+} from 'react-icons/fi';
 
 const ResourcesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [savedResources, setSavedResources] = useState(new Set());
+  const [darkMode, setDarkMode] = useState(false);
+  const [highContrast, setHighContrast] = useState(false);
+  const [fontSize, setFontSize] = useState('medium');
+  const [selectedLanguage, setSelectedLanguage] = useState('all');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [showPreview, setShowPreview] = useState(null);
 
   const categories = [
     { id: 'all', label: 'All Resources', icon: FiBookOpen },
@@ -13,6 +24,8 @@ const ResourcesPage = () => {
     { id: 'exercises', label: 'Exercises', icon: FiPlay }
   ];
 
+  const languages = ['all', 'English', 'Hindi', 'Regional'];
+
   const resources = [
     {
       id: 1,
@@ -21,9 +34,12 @@ const ResourcesPage = () => {
       category: 'videos',
       duration: '15 min',
       language: 'English',
+      rating: 4.8,
+      views: '12.3k',
       description: 'Learn about anxiety symptoms, causes, and effective coping strategies specifically for college students.',
-      thumbnail: 'https://via.placeholder.com/300x200/3B82F6/FFFFFF?text=Anxiety+Guide',
-      tags: ['anxiety', 'coping', 'student-life']
+      thumbnail: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=400&h=250&fit=crop',
+      tags: ['anxiety', 'coping', 'student-life'],
+      difficulty: 'Beginner'
     },
     {
       id: 2,
@@ -32,9 +48,12 @@ const ResourcesPage = () => {
       category: 'audio',
       duration: '20 min',
       language: 'Hindi',
+      rating: 4.9,
+      views: '8.7k',
       description: 'Guided audio session to help you relax your body and mind through progressive muscle relaxation.',
-      thumbnail: 'https://via.placeholder.com/300x200/10B981/FFFFFF?text=Relaxation',
-      tags: ['relaxation', 'stress-relief', 'mindfulness']
+      thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop',
+      tags: ['relaxation', 'stress-relief', 'mindfulness'],
+      difficulty: 'Beginner'
     },
     {
       id: 3,
@@ -43,9 +62,12 @@ const ResourcesPage = () => {
       category: 'articles',
       duration: '8 min read',
       language: 'English',
+      rating: 4.7,
+      views: '15.2k',
       description: 'Practical strategies for handling exam pressure, deadlines, and academic expectations.',
-      thumbnail: 'https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=Academic+Stress',
-      tags: ['stress', 'academics', 'time-management']
+      thumbnail: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=250&fit=crop',
+      tags: ['stress', 'academics', 'time-management'],
+      difficulty: 'Intermediate'
     },
     {
       id: 4,
@@ -54,9 +76,12 @@ const ResourcesPage = () => {
       category: 'exercises',
       duration: '5 min',
       language: 'Regional',
+      rating: 4.9,
+      views: '9.1k',
       description: 'Simple but effective breathing technique to quickly reduce anxiety and promote relaxation.',
-      thumbnail: 'https://via.placeholder.com/300x200/F59E0B/FFFFFF?text=Breathing',
-      tags: ['breathing', 'quick-relief', 'anxiety']
+      thumbnail: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=250&fit=crop',
+      tags: ['breathing', 'quick-relief', 'anxiety'],
+      difficulty: 'Beginner'
     },
     {
       id: 5,
@@ -65,9 +90,12 @@ const ResourcesPage = () => {
       category: 'videos',
       duration: '12 min',
       language: 'English',
+      rating: 4.6,
+      views: '7.8k',
       description: 'Essential tips for better sleep quality and establishing healthy sleep routines in college.',
-      thumbnail: 'https://via.placeholder.com/300x200/06B6D4/FFFFFF?text=Sleep+Tips',
-      tags: ['sleep', 'health', 'routine']
+      thumbnail: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400&h=250&fit=crop',
+      tags: ['sleep', 'health', 'routine'],
+      difficulty: 'Beginner'
     },
     {
       id: 6,
@@ -76,9 +104,12 @@ const ResourcesPage = () => {
       category: 'audio',
       duration: '15 min',
       language: 'Hindi',
+      rating: 4.8,
+      views: '11.5k',
       description: 'Guided mindfulness meditation to help you stay present and reduce overwhelming thoughts.',
-      thumbnail: 'https://via.placeholder.com/300x200/EF4444/FFFFFF?text=Meditation',
-      tags: ['mindfulness', 'meditation', 'present-moment']
+      thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop',
+      tags: ['mindfulness', 'meditation', 'present-moment'],
+      difficulty: 'Beginner'
     },
     {
       id: 7,
@@ -87,9 +118,12 @@ const ResourcesPage = () => {
       category: 'articles',
       duration: '10 min read',
       language: 'English',
+      rating: 4.5,
+      views: '6.3k',
       description: 'Overcome social anxiety and build meaningful friendships during your college years.',
-      thumbnail: 'https://via.placeholder.com/300x200/84CC16/FFFFFF?text=Social+Skills',
-      tags: ['social-anxiety', 'friendship', 'communication']
+      thumbnail: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=250&fit=crop',
+      tags: ['social-anxiety', 'friendship', 'communication'],
+      difficulty: 'Intermediate'
     },
     {
       id: 8,
@@ -98,19 +132,23 @@ const ResourcesPage = () => {
       category: 'exercises',
       duration: '10 min',
       language: 'Regional',
+      rating: 4.7,
+      views: '5.9k',
       description: 'Learn how to practice gratitude journaling to improve mood and perspective.',
-      thumbnail: 'https://via.placeholder.com/300x200/A855F7/FFFFFF?text=Gratitude',
-      tags: ['gratitude', 'journaling', 'positivity']
+      thumbnail: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=250&fit=crop',
+      tags: ['gratitude', 'journaling', 'positivity'],
+      difficulty: 'Beginner'
     }
   ];
 
   const filteredResources = resources.filter(resource => {
     const matchesCategory = selectedCategory === 'all' || resource.category === selectedCategory;
+    const matchesLanguage = selectedLanguage === 'all' || resource.language === selectedLanguage;
     const matchesSearch = resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          resource.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          resource.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
     
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesLanguage && matchesSearch;
   });
 
   const getTypeIcon = (type) => {
@@ -124,187 +162,542 @@ const ResourcesPage = () => {
   };
 
   const getTypeColor = (type) => {
-    switch (type) {
-      case 'video': return 'bg-blue-100 text-blue-600';
-      case 'audio': return 'bg-green-100 text-green-600';
-      case 'article': return 'bg-purple-100 text-purple-600';
-      case 'exercise': return 'bg-orange-100 text-orange-600';
-      default: return 'bg-gray-100 text-gray-600';
+    const colors = {
+      video: darkMode ? 'bg-blue-900 text-blue-300' : 'bg-blue-50 text-blue-600',
+      audio: darkMode ? 'bg-green-900 text-green-300' : 'bg-green-50 text-green-600',
+      article: darkMode ? 'bg-purple-900 text-purple-300' : 'bg-purple-50 text-purple-600',
+      exercise: darkMode ? 'bg-orange-900 text-orange-300' : 'bg-orange-50 text-orange-600'
+    };
+    return colors[type] || (darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-50 text-gray-600');
+  };
+
+  const getDifficultyColor = (difficulty) => {
+    const colors = {
+      'Beginner': darkMode ? 'bg-green-900 text-green-300' : 'bg-green-100 text-green-700',
+      'Intermediate': darkMode ? 'bg-yellow-900 text-yellow-300' : 'bg-yellow-100 text-yellow-700',
+      'Advanced': darkMode ? 'bg-red-900 text-red-300' : 'bg-red-100 text-red-700'
+    };
+    return colors[difficulty] || (darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-700');
+  };
+
+  const toggleSaved = (id) => {
+    const newSaved = new Set(savedResources);
+    if (newSaved.has(id)) {
+      newSaved.delete(id);
+    } else {
+      newSaved.add(id);
+    }
+    setSavedResources(newSaved);
+  };
+
+  const getFontSizeClass = () => {
+    switch (fontSize) {
+      case 'small': return 'text-sm';
+      case 'large': return 'text-lg';
+      default: return 'text-base';
     }
   };
 
-  return (
-    <div className="max-w-7xl mx-auto p-6">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Mental Health Resource Hub</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Access a comprehensive collection of videos, audio guides, articles, and exercises 
-          designed to support your mental wellness journey.
-        </p>
-      </div>
+  const themeClasses = `
+    ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gradient-to-br from-blue-50 via-white to-purple-50 text-gray-900'}
+    ${highContrast ? 'contrast-more' : ''}
+    ${getFontSizeClass()}
+    transition-all duration-300 ease-in-out
+  `;
 
-      {/* Search and Filter */}
-      <div className="mb-8 bg-white rounded-xl shadow-lg p-6">
-        <div className="flex flex-col lg:flex-row gap-4">
-          {/* Search */}
-          <div className="flex-1 relative">
-            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search resources..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+  const cardClasses = darkMode 
+    ? 'bg-gray-800 border border-gray-700' 
+    : 'bg-white/80 backdrop-blur-sm border border-white/50';
 
-          {/* Category Filter */}
-          <div className="flex items-center space-x-2">
-            <FiFilter className="text-gray-400" />
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+  const PreviewModal = ({ resource, onClose }) => {
+    if (!resource) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className={`${cardClasses} rounded-2xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl`}>
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-2xl font-bold">{resource.title}</h3>
+            <button 
+              onClick={onClose}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             >
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.label}
-                </option>
-              ))}
-            </select>
+              <FiX className="text-xl" />
+            </button>
           </div>
-        </div>
-      </div>
-
-      {/* Category Tabs */}
-      <div className="mb-8 overflow-x-auto">
-        <div className="flex space-x-2 min-w-max">
-          {categories.map((category) => {
-            const Icon = category.icon;
-            return (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap ${
-                  selectedCategory === category.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-50'
+          
+          <img 
+            src={resource.thumbnail} 
+            alt={resource.title}
+            className="w-full h-48 object-cover rounded-lg mb-4"
+          />
+          
+          <div className="space-y-4">
+            <p className="text-gray-700 dark:text-gray-300">{resource.description}</p>
+            
+            <div className="flex items-center space-x-4 text-sm">
+              <span className="flex items-center space-x-1">
+                <FiClock className="text-blue-500" />
+                <span>{resource.duration}</span>
+              </span>
+              <span className="flex items-center space-x-1">
+                <FiStar className="text-yellow-500" />
+                <span>{resource.rating}</span>
+              </span>
+              <span className="flex items-center space-x-1">
+                <FiGlobe className="text-purple-500" />
+                <span>{resource.language}</span>
+              </span>
+            </div>
+            
+            <div className="flex space-x-2">
+              <button className="flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105">
+                <FiPlay className="mr-2" />
+                Start {resource.type === 'article' ? 'Reading' : resource.type === 'audio' ? 'Listening' : 'Watching'}
+              </button>
+              <button 
+                onClick={() => toggleSaved(resource.id)}
+                className={`p-3 rounded-lg transition-all duration-200 ${
+                  savedResources.has(resource.id) 
+                    ? 'bg-red-100 text-red-600 hover:bg-red-200' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                <Icon className="text-lg" />
-                <span>{category.label}</span>
+                <FiBookmark className={savedResources.has(resource.id) ? 'fill-current' : ''} />
               </button>
-            );
-          })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className={themeClasses + ' min-h-screen transition-all duration-300'}>
+      {/* Emergency Banner */}
+      <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white py-3 px-4 text-center">
+        <div className="flex items-center justify-center space-x-4">
+          <FiAlertTriangle className="text-xl" />
+          <span className="font-medium">Need immediate help? </span>
+          <div className="flex space-x-4">
+            <a href="tel:988" className="underline hover:no-underline">Crisis Line: 988</a>
+            <a href="#chat" className="underline hover:no-underline">Chat Now</a>
+          </div>
         </div>
       </div>
 
-      {/* Resources Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredResources.map((resource) => {
-          const TypeIcon = getTypeIcon(resource.type);
-          return (
-            <div
-              key={resource.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-            >
-              {/* Thumbnail */}
-              <div className="relative">
-                <img
-                  src={resource.thumbnail}
-                  alt={resource.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className={`absolute top-3 left-3 px-2 py-1 rounded-md text-xs font-medium ${getTypeColor(resource.type)}`}>
-                  <div className="flex items-center space-x-1">
-                    <TypeIcon className="text-sm" />
-                    <span className="capitalize">{resource.type}</span>
-                  </div>
-                </div>
-                <div className="absolute top-3 right-3 bg-black bg-opacity-70 text-white px-2 py-1 rounded-md text-xs">
-                  {resource.duration}
-                </div>
+      {/* Header */}
+      <header className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+        <div className="relative max-w-7xl mx-auto px-6 py-16">
+          <div className="text-center">
+            <div className="flex justify-center mb-6">
+              <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-full">
+                <FiHeart className="text-4xl text-blue-600 dark:text-blue-400" />
               </div>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Mental Health Resource Hub
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+              Your safe space for mental wellness. Access carefully curated videos, audio guides, 
+              articles, and exercises designed to support your journey to better mental health.
+            </p>
+          </div>
+        </div>
+      </header>
 
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{resource.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm">{resource.description}</p>
-                
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-gray-500">Language: {resource.language}</span>
+      <div className="max-w-7xl mx-auto px-6 pb-12">
+        {/* Accessibility Controls */}
+        <div className={`${cardClasses} rounded-xl p-4 mb-8 shadow-lg`}>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center space-x-4">
+              <span className="text-sm font-medium">Accessibility:</span>
+              
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="flex items-center space-x-2 px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              >
+                {darkMode ? <FiSun className="text-yellow-500" /> : <FiMoon className="text-blue-500" />}
+                <span className="text-sm">{darkMode ? 'Light' : 'Dark'}</span>
+              </button>
+
+              <button
+                onClick={() => setHighContrast(!highContrast)}
+                className={`px-3 py-1 rounded-lg text-sm transition-colors ${
+                  highContrast 
+                    ? 'bg-black text-white' 
+                    : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                High Contrast
+              </button>
+
+              <select
+                value={fontSize}
+                onChange={(e) => setFontSize(e.target.value)}
+                className="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm border-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="small">Small Text</option>
+                <option value="medium">Medium Text</option>
+                <option value="large">Large Text</option>
+              </select>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <FiSettings className="text-gray-500" />
+              <span className="text-sm text-gray-500">Customize your experience</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Search and Filters */}
+        <div className={`${cardClasses} rounded-xl shadow-lg p-6 mb-8`}>
+          <div className="flex flex-col lg:flex-row gap-4">
+            {/* Search Bar */}
+            <div className="flex-1 relative">
+              <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search by title, description, or tags..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                aria-label="Search mental health resources"
+              />
+            </div>
+
+            {/* Language Filter */}
+            <div className="relative">
+              <FiGlobe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <select
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                className="pl-10 pr-8 py-3 border border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer"
+              >
+                {languages.map((lang) => (
+                  <option key={lang} value={lang}>
+                    {lang === 'all' ? 'All Languages' : lang}
+                  </option>
+                ))}
+              </select>
+              <FiChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
+
+            {/* Advanced Filters Button */}
+            <button
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              className="flex items-center space-x-2 px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              <FiFilter />
+              <span>Filters</span>
+            </button>
+          </div>
+
+          {/* Advanced Filters Panel */}
+          {isFilterOpen && (
+            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-600">
+              <div className="grid md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Duration</label>
+                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <option>Any Duration</option>
+                    <option>Under 10 minutes</option>
+                    <option>10-20 minutes</option>
+                    <option>Over 20 minutes</option>
+                  </select>
                 </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {resource.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
+                <div>
+                  <label className="block text-sm font-medium mb-2">Difficulty</label>
+                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <option>Any Level</option>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                  </select>
                 </div>
-
-                {/* Action Buttons */}
-                <div className="flex space-x-3">
-                  <button className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                    <FiPlay className="mr-2" />
-                    {resource.type === 'article' ? 'Read' : resource.type === 'audio' ? 'Listen' : 'Watch'}
-                  </button>
-                  
-                  <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors">
-                    <FiDownload />
-                  </button>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Rating</label>
+                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700">
+                    <option>Any Rating</option>
+                    <option>4.5+ Stars</option>
+                    <option>4.0+ Stars</option>
+                    <option>3.5+ Stars</option>
+                  </select>
                 </div>
               </div>
             </div>
-          );
-        })}
-      </div>
+          )}
+        </div>
 
-      {filteredResources.length === 0 && (
-        <div className="text-center py-12">
-          <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FiBookOpen className="text-gray-400 text-2xl" />
+        {/* Category Navigation */}
+        <div className="mb-8 overflow-x-auto">
+          <div className="flex space-x-3 min-w-max pb-2">
+            {categories.map((category) => {
+              const Icon = category.icon;
+              const isActive = selectedCategory === category.id;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`flex items-center space-x-3 px-6 py-3 rounded-xl font-medium transition-all duration-200 whitespace-nowrap transform hover:scale-105 ${
+                    isActive
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                      : `${cardClasses} hover:shadow-md`
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  <Icon className="text-lg" />
+                  <span>{category.label}</span>
+                  <span className="text-sm opacity-75">
+                    ({resources.filter(r => category.id === 'all' || r.category === category.id).length})
+                  </span>
+                </button>
+              );
+            })}
           </div>
-          <h3 className="text-xl font-semibold text-gray-700 mb-2">No Resources Found</h3>
-          <p className="text-gray-500">Try adjusting your search terms or category filter.</p>
         </div>
-      )}
 
-      {/* Emergency Resources */}
-      <div className="mt-16 bg-red-50 border border-red-200 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-red-800 mb-4">Emergency Resources</h2>
-        <p className="text-red-700 mb-6">
-          If you're experiencing a mental health crisis or having thoughts of self-harm, please reach out immediately:
-        </p>
-        
-        <div className="grid md:grid-cols-3 gap-4">
-          <a
-            href="tel:988"
-            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
-          >
-            Crisis Lifeline: 988
-          </a>
+        {/* Results Info */}
+        <div className="mb-6 flex items-center justify-between">
+          <p className="text-gray-600 dark:text-gray-400">
+            Showing {filteredResources.length} of {resources.length} resources
+          </p>
+          {savedResources.size > 0 && (
+            <p className="text-sm text-blue-600 dark:text-blue-400 flex items-center space-x-1">
+              <FiBookmark />
+              <span>{savedResources.size} saved</span>
+            </p>
+          )}
+        </div>
+
+        {/* Resources Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredResources.map((resource) => {
+            const TypeIcon = getTypeIcon(resource.type);
+            const isSaved = savedResources.has(resource.id);
+            
+            return (
+              <div
+                key={resource.id}
+                className={`${cardClasses} rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group`}
+              >
+                {/* Thumbnail */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={resource.thumbnail}
+                    alt={resource.title}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button
+                      onClick={() => setShowPreview(resource)}
+                      className="absolute inset-0 flex items-center justify-center text-white text-lg font-medium"
+                    >
+                      Quick Preview
+                    </button>
+                  </div>
+
+                  {/* Type Badge */}
+                  <div className={`absolute top-3 left-3 px-3 py-1 rounded-lg text-xs font-medium ${getTypeColor(resource.type)} backdrop-blur-sm`}>
+                    <div className="flex items-center space-x-1">
+                      <TypeIcon className="text-sm" />
+                      <span className="capitalize">{resource.type}</span>
+                    </div>
+                  </div>
+
+                  {/* Duration */}
+                  <div className="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded-md text-xs backdrop-blur-sm">
+                    {resource.duration}
+                  </div>
+
+                  {/* Save Button */}
+                  <button
+                    onClick={() => toggleSaved(resource.id)}
+                    className={`absolute bottom-3 right-3 p-2 rounded-full backdrop-blur-sm transition-all duration-200 ${
+                      isSaved 
+                        ? 'bg-red-500 text-white' 
+                        : 'bg-white/80 text-gray-600 hover:bg-white hover:text-red-500'
+                    }`}
+                    aria-label={isSaved ? 'Remove from saved' : 'Save resource'}
+                  >
+                    <FiBookmark className={isSaved ? 'fill-current' : ''} />
+                  </button>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 line-clamp-2 flex-1">
+                      {resource.title}
+                    </h3>
+                  </div>
+                  
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                    {resource.description}
+                  </p>
+                  
+                  {/* Meta Info */}
+                  <div className="flex items-center justify-between mb-4 text-sm">
+                    <div className="flex items-center space-x-3">
+                      <span className="flex items-center space-x-1 text-yellow-500">
+                        <FiStar />
+                        <span>{resource.rating}</span>
+                      </span>
+                      <span className="text-gray-500 dark:text-gray-400">
+                        {resource.views} views
+                      </span>
+                    </div>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(resource.difficulty)}`}>
+                      {resource.difficulty}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center space-x-1">
+                      <FiGlobe />
+                      <span>{resource.language}</span>
+                    </span>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {resource.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                        onClick={() => setSearchTerm(tag)}
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex space-x-3">
+                    <button 
+                      onClick={() => setShowPreview(resource)}
+                      className="flex-1 flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
+                    >
+                      <FiPlay className="mr-2" />
+                      {resource.type === 'article' ? 'Read' : resource.type === 'audio' ? 'Listen' : resource.type === 'exercise' ? 'Practice' : 'Watch'}
+                    </button>
+                    
+                    <button className="px-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 transform hover:scale-105">
+                      <FiDownload />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* No Results State */}
+        {filteredResources.length === 0 && (
+          <div className="text-center py-16">
+            <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
+              <FiBookOpen className="text-blue-500 dark:text-blue-400 text-3xl" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-300 mb-3">No Resources Found</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-6 max-w-md mx-auto">
+              We couldn't find any resources matching your criteria. Try adjusting your search terms or category filter.
+            </p>
+            <button 
+              onClick={() => {
+                setSearchTerm('');
+                setSelectedCategory('all');
+                setSelectedLanguage('all');
+              }}
+              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+            >
+              Clear All Filters
+            </button>
+          </div>
+        )}
+
+        {/* Motivational Section */}
+        <div className={`${cardClasses} rounded-xl p-8 mt-12 text-center shadow-lg`}>
+          <div className="max-w-3xl mx-auto">
+            <div className="w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <FiHeart className="text-white text-2xl" />
+            </div>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+              You're Taking a Positive Step
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+              Remember, seeking support is a sign of strength. Every small step you take towards 
+              better mental health matters. You're not alone in this journey.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <button className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white rounded-lg transition-all duration-200 transform hover:scale-105">
+                <FiMessageCircle />
+                <span>Talk to Someone</span>
+              </button>
+              <button className="flex items-center space-x-2 px-6 py-3 border-2 border-purple-500 text-purple-600 dark:text-purple-400 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 transform hover:scale-105">
+                <FiBookmark />
+                <span>View Saved ({savedResources.size})</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Emergency Resources */}
+        <div className="mt-16 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 border-2 border-red-200 dark:border-red-800 rounded-2xl p-8 shadow-xl">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <FiAlertTriangle className="text-white text-2xl" />
+            </div>
+            <h2 className="text-3xl font-bold text-red-800 dark:text-red-400 mb-4">Crisis Support</h2>
+            <p className="text-red-700 dark:text-red-300 text-lg max-w-2xl mx-auto">
+              If you're experiencing a mental health crisis or having thoughts of self-harm, 
+              please reach out immediately. Help is available 24/7.
+            </p>
+          </div>
           
-          <a
-            href="tel:911"
-            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
-          >
-            Emergency: 911
-          </a>
-          
-          <a
-            href="/chatbot"
-            className="flex items-center justify-center px-6 py-3 border-2 border-red-600 text-red-600 font-medium rounded-md hover:bg-red-50 transition-colors"
-          >
-            Chat Support Now
-          </a>
+          <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            <a
+              href="tel:988"
+              className="flex flex-col items-center justify-center px-6 py-6 bg-red-600 hover:bg-red-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
+            >
+              <FiPhone className="text-2xl mb-2" />
+              <span className="text-lg font-bold">Crisis Lifeline</span>
+              <span className="text-red-200">Call 988</span>
+            </a>
+            
+            <a
+              href="tel:911"
+              className="flex flex-col items-center justify-center px-6 py-6 bg-red-600 hover:bg-red-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
+            >
+              <FiAlertTriangle className="text-2xl mb-2" />
+              <span className="text-lg font-bold">Emergency</span>
+              <span className="text-red-200">Call 911</span>
+            </a>
+            
+            <button className="flex flex-col items-center justify-center px-6 py-6 border-2 border-red-600 text-red-600 dark:text-red-400 font-medium rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200 transform hover:scale-105">
+              <FiMessageCircle className="text-2xl mb-2" />
+              <span className="text-lg font-bold">Chat Support</span>
+              <span className="text-red-500 dark:text-red-400">Available Now</span>
+            </button>
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-red-600 dark:text-red-400 text-sm">
+              Your safety and wellbeing matter. These resources are confidential and judgment-free.
+            </p>
+          </div>
+        </div>
+
+        {/* Floating Action Button for Quick Access */}
+        <div className="fixed bottom-6 right-6 z-40">
+          <button className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center">
+            <FiMessageCircle className="text-xl" />
+          </button>
         </div>
       </div>
+
+      {/* Preview Modal */}
+      <PreviewModal resource={showPreview} onClose={() => setShowPreview(null)} />
     </div>
   );
 };
