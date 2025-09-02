@@ -117,10 +117,10 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="w-full bg-white">
       {/* Dashboard Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="px-6 py-4">
+      <div className="bg-white shadow-sm border-b border-gray-200 -mx-4 sm:-mx-6 lg:-mx-8">
+        <div className="px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center">
@@ -149,10 +149,10 @@ const Home = () => {
       </div>
 
       {/* Dashboard Content */}
-      <div className="p-6 space-y-6">
+      <div className="bg-gray-50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Current Streak</p>
@@ -168,7 +168,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Mood Score</p>
@@ -184,7 +184,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Sessions</p>
@@ -199,7 +199,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Goals Achieved</p>
@@ -220,7 +220,7 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Quick Actions */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 {quickActions.map((action, index) => {
@@ -229,10 +229,10 @@ const Home = () => {
                     <Link
                       key={index}
                       to={action.link}
-                      className={`flex items-center p-3 rounded-lg border-2 border-transparent hover:border-${action.color}-200 hover:bg-${action.color}-50 transition-all duration-200 group`}
+                      className="flex items-center p-3 rounded-lg border-2 border-transparent hover:border-blue-200 hover:bg-blue-50 transition-all duration-200 group"
                     >
-                      <div className={`w-10 h-10 bg-${action.color}-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-${action.color}-200 transition-colors`}>
-                        <Icon className={`text-${action.color}-600 text-lg`} />
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors">
+                        <Icon className="text-blue-600 text-lg" />
                       </div>
                       <div>
                         <p className="font-medium text-gray-900">{action.title}</p>
@@ -247,7 +247,7 @@ const Home = () => {
 
           {/* Mood Chart */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-semibold text-gray-900">Mood Trend</h3>
                 <select 
@@ -279,7 +279,7 @@ const Home = () => {
         {/* Recent Activity & Upcoming Events */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Recent Activity */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
               <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</button>
@@ -301,7 +301,7 @@ const Home = () => {
           </div>
 
           {/* Upcoming Events */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900">Upcoming Events</h3>
               <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">View Calendar</button>
@@ -324,7 +324,7 @@ const Home = () => {
         </div>
 
         {/* Platform Stats */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Platform Overview</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
