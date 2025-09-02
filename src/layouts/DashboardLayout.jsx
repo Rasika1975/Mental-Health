@@ -89,8 +89,8 @@ const DashboardLayout = () => {
         </nav>
       </div>
 
-      {/* Main content (next to sidebar) */}
-      <div className="flex-1 bg-gray-50 p-6 ">
+      {/* Main content */}
+      <div className="lg:pl-64">
         {/* Top navigation */}
         <div className="sticky top-0 z-10 bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
@@ -101,6 +101,7 @@ const DashboardLayout = () => {
               >
                 <FiMenu className="text-xl" />
               </button>
+              
               <h1 className="ml-4 lg:ml-0 text-2xl font-bold text-gray-900">
                 {location.pathname.includes('counselor') ? 'Counselor Dashboard' : 'Admin Dashboard'}
               </h1>
@@ -111,6 +112,7 @@ const DashboardLayout = () => {
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                 <span>Online</span>
               </div>
+              
               <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
                 <FiUsers className="text-gray-600" />
               </div>

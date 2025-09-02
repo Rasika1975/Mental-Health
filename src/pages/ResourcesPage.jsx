@@ -272,99 +272,30 @@ const ResourcesPage = () => {
   };
 
   return (
-    <div className={themeClasses + ' min-h-screen transition-all duration-300'}>
-      {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white py-3 px-4 text-center">
-        <div className="flex items-center justify-center space-x-4">
-          <FiAlertTriangle className="text-xl" />
-          <span className="font-medium">Need immediate help? </span>
-          <div className="flex space-x-4">
-            <a href="tel:988" className="underline hover:no-underline">Crisis Line: 988</a>
-            <a href="#chat" className="underline hover:no-underline">Chat Now</a>
-          </div>
-        </div>
+    <div className="max-w-7xl mx-auto p-6">
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Mental Health Resource Hub</h1>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          Access a comprehensive collection of videos, audio guides, articles, and exercises 
+          designed to support your mental wellness journey.
+        </p>
       </div>
 
-      {/* Header */}
-      <header className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
-        <div className="relative max-w-7xl mx-auto px-6 py-16">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-full">
-                <FiHeart className="text-4xl text-blue-600 dark:text-blue-400" />
-              </div>
-            </div>
-            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Mental Health Resource Hub
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Your safe space for mental wellness. Access carefully curated videos, audio guides, 
-              articles, and exercises designed to support your journey to better mental health.
-            </p>
+      {/* Search and Filter */}
+      <div className="mb-8 bg-white rounded-xl shadow-lg p-6">
+        <div className="flex flex-col lg:flex-row gap-4">
+          {/* Search */}
+          <div className="flex-1 relative">
+            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search resources..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
-        </div>
-      </header>
-
-      <div className="max-w-7xl mx-auto px-6 pb-12">
-        {/* Accessibility Controls */}
-        <div className={`${cardClasses} rounded-xl p-4 mb-8 shadow-lg`}>
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center space-x-4">
-              <span className="text-sm font-medium">Accessibility:</span>
-              
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="flex items-center space-x-2 px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-              >
-                {darkMode ? <FiSun className="text-yellow-500" /> : <FiMoon className="text-blue-500" />}
-                <span className="text-sm">{darkMode ? 'Light' : 'Dark'}</span>
-              </button>
-
-              <button
-                onClick={() => setHighContrast(!highContrast)}
-                className={`px-3 py-1 rounded-lg text-sm transition-colors ${
-                  highContrast 
-                    ? 'bg-black text-white' 
-                    : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600'
-                }`}
-              >
-                High Contrast
-              </button>
-
-              <select
-                value={fontSize}
-                onChange={(e) => setFontSize(e.target.value)}
-                className="px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm border-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="small">Small Text</option>
-                <option value="medium">Medium Text</option>
-                <option value="large">Large Text</option>
-              </select>
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <FiSettings className="text-gray-500" />
-              <span className="text-sm text-gray-500">Customize your experience</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Search and Filters */}
-        <div className={`${cardClasses} rounded-xl shadow-lg p-6 mb-8`}>
-          <div className="flex flex-col lg:flex-row gap-4">
-            {/* Search Bar */}
-            <div className="flex-1 relative">
-              <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search by title, description, or tags..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                aria-label="Search mental health resources"
-              />
-            </div>
 
             {/* Language Filter */}
             <div className="relative">
@@ -642,57 +573,34 @@ const ResourcesPage = () => {
           </div>
         </div>
 
-        {/* Emergency Resources */}
-        <div className="mt-16 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 border-2 border-red-200 dark:border-red-800 rounded-2xl p-8 shadow-xl">
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FiAlertTriangle className="text-white text-2xl" />
-            </div>
-            <h2 className="text-3xl font-bold text-red-800 dark:text-red-400 mb-4">Crisis Support</h2>
-            <p className="text-red-700 dark:text-red-300 text-lg max-w-2xl mx-auto">
-              If you're experiencing a mental health crisis or having thoughts of self-harm, 
-              please reach out immediately. Help is available 24/7.
-            </p>
-          </div>
+      {/* Emergency Resources */}
+      <div className="mt-16 bg-red-50 border border-red-200 rounded-xl p-8">
+        <h2 className="text-2xl font-bold text-red-800 mb-4">Emergency Resources</h2>
+        <p className="text-red-700 mb-6">
+          If you're experiencing a mental health crisis or having thoughts of self-harm, please reach out immediately:
+        </p>
+        
+        <div className="grid md:grid-cols-3 gap-4">
+          <a
+            href="tel:988"
+            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+          >
+            Crisis Lifeline: 988
+          </a>
           
-          <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            <a
-              href="tel:988"
-              className="flex flex-col items-center justify-center px-6 py-6 bg-red-600 hover:bg-red-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
-            >
-              <FiPhone className="text-2xl mb-2" />
-              <span className="text-lg font-bold">Crisis Lifeline</span>
-              <span className="text-red-200">Call 988</span>
-            </a>
-            
-            <a
-              href="tel:911"
-              className="flex flex-col items-center justify-center px-6 py-6 bg-red-600 hover:bg-red-700 text-white font-medium rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
-            >
-              <FiAlertTriangle className="text-2xl mb-2" />
-              <span className="text-lg font-bold">Emergency</span>
-              <span className="text-red-200">Call 911</span>
-            </a>
-            
-            <button className="flex flex-col items-center justify-center px-6 py-6 border-2 border-red-600 text-red-600 dark:text-red-400 font-medium rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200 transform hover:scale-105">
-              <FiMessageCircle className="text-2xl mb-2" />
-              <span className="text-lg font-bold">Chat Support</span>
-              <span className="text-red-500 dark:text-red-400">Available Now</span>
-            </button>
-          </div>
-
-          <div className="mt-8 text-center">
-            <p className="text-red-600 dark:text-red-400 text-sm">
-              Your safety and wellbeing matter. These resources are confidential and judgment-free.
-            </p>
-          </div>
-        </div>
-
-        {/* Floating Action Button for Quick Access */}
-        <div className="fixed bottom-6 right-6 z-40">
-          <button className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center">
-            <FiMessageCircle className="text-xl" />
-          </button>
+          <a
+            href="tel:911"
+            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+          >
+            Emergency: 911
+          </a>
+          
+          <a
+            href="/chatbot"
+            className="flex items-center justify-center px-6 py-3 border-2 border-red-600 text-red-600 font-medium rounded-md hover:bg-red-50 transition-colors"
+          >
+            Chat Support Now
+          </a>
         </div>
       </div>
 
