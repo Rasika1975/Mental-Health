@@ -120,7 +120,7 @@ const Home = () => {
     <div className="w-full bg-white">
       {/* Dashboard Header */}
       <div className="bg-white shadow-sm border-b border-gray-200 -mx-4 sm:-mx-6 lg:-mx-8">
-        <div className="px-6 py-6">
+        <div className="px-14 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center">
