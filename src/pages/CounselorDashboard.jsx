@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { FiCalendar, FiClock, FiUser, FiAlertCircle, FiCheckCircle, FiPhone, FiVideo, FiMessageSquare, FiFileText } from 'react-icons/fi';
+import { 
+  FiCalendar, FiClock, FiUser, FiAlertCircle, FiCheckCircle, 
+  FiPhone, FiVideo, FiMessageSquare, FiFileText, 
+  FiHeart, FiBell, FiSettings 
+} from 'react-icons/fi';
 
 const CounselorDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
+  // Added for header
+  const userStats = { name: "Dr. Smith" };
+  const [notifications] = useState([
+    { id: 1, read: false, message: "New student referral" },
+    { id: 2, read: true, message: "Session completed" }
+  ]);
+
   const todayStats = [
     {
-      title: 'Today\'s Appointments',
+      title: "Today's Appointments",
       value: '6',
       icon: FiCalendar,
       color: 'from-blue-500 to-cyan-500'
@@ -139,10 +150,40 @@ const CounselorDashboard = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Counselor Dashboard</h1>
-        <p className="text-base text-gray-700 mt-1">Manage your appointments and student sessions</p>
+      
+      {/* Dashboard Header */}
+      <div className="bg-white border-b border-gray-200 mb-8">
+        <div className="px-8 py-5 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center">
+              <FiHeart className="text-white text-sm" />
+            </div>
+            <div>
+              <h1 className="text-xl font-semibold text-gray-900">
+                Welcome back, {userStats.name}!
+              </h1>
+              <p className="text-sm text-gray-500">
+                Here's your mental health overview
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-3">
+            <button className="relative p-2 text-gray-500 hover:bg-gray-100 rounded-md">
+              <FiBell className="text-lg" />
+              {notifications.filter((n) => !n.read).length > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center">
+                  {notifications.filter((n) => !n.read).length}
+                </span>
+              )}
+            </button>
+            <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-md">
+              <FiSettings className="text-lg" />
+            </button>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+              Login
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -156,7 +197,6 @@ const CounselorDashboard = () => {
                   <p className="text-sm text-gray-500 font-medium">{stat.title}</p>
                   <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
                 </div>
-                
                 <div className={`w-12 h-12 bg-gradient-to-r ${stat.color} rounded-lg flex items-center justify-center`}>
                   <Icon className="text-white text-xl" />
                 </div>
@@ -166,6 +206,8 @@ const CounselorDashboard = () => {
         })}
       </div>
 
+      {/* Rest of your dashboard (unchanged) */}
+      {/* ...Today's Schedule + Recent Activity sections... */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Today's Schedule */}
         <div className="lg:col-span-2 bg-white rounded-xl shadow-lg p-6">
@@ -298,7 +340,14 @@ const CounselorDashboard = () => {
         </div>
       </div>
     </div>
+    
   );
 };
+
+
+
+
+      
+
 
 export default CounselorDashboard;

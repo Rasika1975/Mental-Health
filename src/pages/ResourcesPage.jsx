@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   FiPlay, FiDownload, FiBookOpen, FiHeadphones, FiVideo, FiFileText, FiSearch, FiFilter,
   FiHeart, FiStar, FiClock, FiGlobe, FiMoon, FiSun, FiVolume2, FiBookmark, FiChevronDown,
-  FiMessageCircle, FiPhone, FiAlertTriangle, FiSettings, FiUser, FiMenu, FiX
+  FiMessageCircle, FiPhone, FiAlertTriangle, FiSettings, FiUser, FiMenu, FiX,FiBell
 } from 'react-icons/fi';
 
 const ResourcesPage = () => {
@@ -15,6 +15,12 @@ const ResourcesPage = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('all');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [showPreview, setShowPreview] = useState(null);
+  // ✅ Add these states for Dashboard Header
+  const [userStats] = useState({ name: "Student" });
+  const [notifications] = useState([
+    { id: 1, read: false, message: "Welcome to your dashboard!" }
+  ]);
+
 
   const categories = [
     { id: 'all', label: 'All Resources', icon: FiBookOpen },
@@ -273,6 +279,41 @@ const ResourcesPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+        {/* ✅ Dashboard Header */}
+      <div className="bg-white border-b border-gray-200 mb-8 rounded-lg shadow-sm">
+        <div className="px-8 py-5 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center">
+              <FiHeart className="text-white text-sm" />
+            </div>
+            <div>
+              <h1 className="text-xl font-semibold text-gray-900">
+                Welcome back, {userStats.name}!
+              </h1>
+              <p className="text-sm text-gray-500">
+                Here's your mental health overview
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-3">
+            <button className="relative p-2 text-gray-500 hover:bg-gray-100 rounded-md">
+              <FiBell className="text-lg" />
+              {notifications.filter((n) => !n.read).length > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center">
+                  {notifications.filter((n) => !n.read).length}
+                </span>
+              )}
+            </button>
+            <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-md">
+              <FiSettings className="text-lg" />
+            </button>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Mental Health Resource Hub</h1>
