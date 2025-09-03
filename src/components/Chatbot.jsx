@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
-  FiSend,  
+  FiSend, 
   FiMessageCircle, FiThumbsUp, FiThumbsDown, FiCopy, FiDownload,
   FiSettings, FiVolume2, FiVolumeX, FiMoreHorizontal, FiStar,
   FiAlertTriangle, FiCheckCircle, FiInfo, FiZap
