@@ -216,7 +216,7 @@ const ResourcesPage = () => {
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
         <div className={`${cardClasses} rounded-2xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl`}>
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-2xl font-bold">{resource.title}</h3>
+            <h3 className="text-lg font-semibold">{resource.title}</h3>
             <button 
               onClick={onClose}
               className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -232,9 +232,9 @@ const ResourcesPage = () => {
           />
           
           <div className="space-y-4">
-            <p className="text-gray-700 dark:text-gray-300">{resource.description}</p>
+            <p className="text-base text-gray-700 dark:text-gray-300">{resource.description}</p>
             
-            <div className="flex items-center space-x-4 text-sm">
+            <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
               <span className="flex items-center space-x-1">
                 <FiClock className="text-blue-500" />
                 <span>{resource.duration}</span>
@@ -250,13 +250,13 @@ const ResourcesPage = () => {
             </div>
             
             <div className="flex space-x-2">
-              <button className="flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105">
+              <button className="flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-base font-semibold rounded-lg transition-all duration-200 transform hover:scale-105">
                 <FiPlay className="mr-2" />
                 Start {resource.type === 'article' ? 'Reading' : resource.type === 'audio' ? 'Listening' : 'Watching'}
               </button>
               <button 
                 onClick={() => toggleSaved(resource.id)}
-                className={`p-3 rounded-lg transition-all duration-200 ${
+                className={`p-3 rounded-lg transition-all duration-200 text-base ${
                   savedResources.has(resource.id) 
                     ? 'bg-red-100 text-red-600 hover:bg-red-200' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -275,8 +275,8 @@ const ResourcesPage = () => {
     <div className="max-w-7xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Mental Health Resource Hub</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Mental Health Resource Hub</h1>
+        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
           Access a comprehensive collection of videos, audio guides, articles, and exercises 
           designed to support your mental wellness journey.
         </p>
@@ -293,7 +293,7 @@ const ResourcesPage = () => {
               placeholder="Search resources..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
             />
           </div>
 
@@ -303,7 +303,7 @@ const ResourcesPage = () => {
               <select
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
-                className="pl-10 pr-8 py-3 border border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer"
+                className="pl-10 pr-8 py-3 border border-gray-200 dark:border-gray-600 rounded-xl bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer text-base"
               >
                 {languages.map((lang) => (
                   <option key={lang} value={lang}>
@@ -317,7 +317,7 @@ const ResourcesPage = () => {
             {/* Advanced Filters Button */}
             <button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className="flex items-center space-x-2 px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="flex items-center space-x-2 px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-base"
             >
               <FiFilter />
               <span>Filters</span>
@@ -329,8 +329,8 @@ const ResourcesPage = () => {
             <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-600">
               <div className="grid md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Duration</label>
-                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700">
+                  <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">Duration</label>
+                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-base">
                     <option>Any Duration</option>
                     <option>Under 10 minutes</option>
                     <option>10-20 minutes</option>
@@ -338,8 +338,8 @@ const ResourcesPage = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Difficulty</label>
-                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700">
+                  <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">Difficulty</label>
+                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-base">
                     <option>Any Level</option>
                     <option>Beginner</option>
                     <option>Intermediate</option>
@@ -347,8 +347,8 @@ const ResourcesPage = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Rating</label>
-                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700">
+                  <label className="block text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">Rating</label>
+                  <select className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-base">
                     <option>Any Rating</option>
                     <option>4.5+ Stars</option>
                     <option>4.0+ Stars</option>
@@ -370,7 +370,7 @@ const ResourcesPage = () => {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center space-x-3 px-6 py-3 rounded-xl font-medium transition-all duration-200 whitespace-nowrap transform hover:scale-105 ${
+                  className={`flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold text-base transition-all duration-200 whitespace-nowrap transform hover:scale-105 ${
                     isActive
                       ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
                       : `${cardClasses} hover:shadow-md`
@@ -379,7 +379,7 @@ const ResourcesPage = () => {
                 >
                   <Icon className="text-lg" />
                   <span>{category.label}</span>
-                  <span className="text-sm opacity-75">
+                  <span className="text-sm text-gray-500 dark:text-gray-400 opacity-75">
                     ({resources.filter(r => category.id === 'all' || r.category === category.id).length})
                   </span>
                 </button>
@@ -390,11 +390,11 @@ const ResourcesPage = () => {
 
         {/* Results Info */}
         <div className="mb-6 flex items-center justify-between">
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-base text-gray-700 dark:text-gray-300">
             Showing {filteredResources.length} of {resources.length} resources
           </p>
           {savedResources.size > 0 && (
-            <p className="text-sm text-blue-600 dark:text-blue-400 flex items-center space-x-1">
+            <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center space-x-1">
               <FiBookmark />
               <span>{savedResources.size} saved</span>
             </p>
@@ -459,33 +459,33 @@ const ResourcesPage = () => {
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 line-clamp-2 flex-1">
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 line-clamp-2 flex-1">
                       {resource.title}
                     </h3>
                   </div>
                   
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                  <p className="text-base text-gray-700 dark:text-gray-400 mb-4 line-clamp-3">
                     {resource.description}
                   </p>
                   
                   {/* Meta Info */}
-                  <div className="flex items-center justify-between mb-4 text-sm">
+                  <div className="flex items-center justify-between mb-4 text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center space-x-3">
                       <span className="flex items-center space-x-1 text-yellow-500">
                         <FiStar />
                         <span>{resource.rating}</span>
                       </span>
-                      <span className="text-gray-500 dark:text-gray-400">
+                      <span>
                         {resource.views} views
                       </span>
                     </div>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(resource.difficulty)}`}>
+                    <span className={`px-2 py-1 rounded-full font-semibold ${getDifficultyColor(resource.difficulty)}`}>
                       {resource.difficulty}
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center space-x-1">
+                  <div className="flex items-center justify-between mb-4 text-sm text-gray-500 dark:text-gray-400">
+                    <span className="flex items-center space-x-1">
                       <FiGlobe />
                       <span>{resource.language}</span>
                     </span>
@@ -496,7 +496,7 @@ const ResourcesPage = () => {
                     {resource.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-sm text-gray-500 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
                         onClick={() => setSearchTerm(tag)}
                       >
                         #{tag}
@@ -508,13 +508,13 @@ const ResourcesPage = () => {
                   <div className="flex space-x-3">
                     <button 
                       onClick={() => setShowPreview(resource)}
-                      className="flex-1 flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
+                      className="flex-1 flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-base font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
                     >
                       <FiPlay className="mr-2" />
                       {resource.type === 'article' ? 'Read' : resource.type === 'audio' ? 'Listen' : resource.type === 'exercise' ? 'Practice' : 'Watch'}
                     </button>
                     
-                    <button className="px-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 transform hover:scale-105">
+                    <button className="px-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-base rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 transform hover:scale-105">
                       <FiDownload />
                     </button>
                   </div>
@@ -530,8 +530,8 @@ const ResourcesPage = () => {
             <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
               <FiBookOpen className="text-blue-500 dark:text-blue-400 text-3xl" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-300 mb-3">No Resources Found</h3>
-            <p className="text-gray-500 dark:text-gray-400 mb-6 max-w-md mx-auto">
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">No Resources Found</h3>
+            <p className="text-base text-gray-700 dark:text-gray-500 mb-6 max-w-md mx-auto">
               We couldn't find any resources matching your criteria. Try adjusting your search terms or category filter.
             </p>
             <button 
@@ -540,7 +540,7 @@ const ResourcesPage = () => {
                 setSelectedCategory('all');
                 setSelectedLanguage('all');
               }}
-              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white text-base font-semibold rounded-lg transition-colors"
             >
               Clear All Filters
             </button>
@@ -553,19 +553,19 @@ const ResourcesPage = () => {
             <div className="w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
               <FiHeart className="text-white text-2xl" />
             </div>
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
               You're Taking a Positive Step
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-base text-gray-700 dark:text-gray-400 mb-6">
               Remember, seeking support is a sign of strength. Every small step you take towards 
               better mental health matters. You're not alone in this journey.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white rounded-lg transition-all duration-200 transform hover:scale-105">
+              <button className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white text-base font-semibold rounded-lg transition-all duration-200 transform hover:scale-105">
                 <FiMessageCircle />
                 <span>Talk to Someone</span>
               </button>
-              <button className="flex items-center space-x-2 px-6 py-3 border-2 border-purple-500 text-purple-600 dark:text-purple-400 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 transform hover:scale-105">
+              <button className="flex items-center space-x-2 px-6 py-3 border-2 border-purple-500 text-purple-600 dark:text-purple-400 text-base font-semibold rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 transform hover:scale-105">
                 <FiBookmark />
                 <span>View Saved ({savedResources.size})</span>
               </button>
@@ -576,28 +576,28 @@ const ResourcesPage = () => {
       {/* Emergency Resources */}
       <div className="mt-16 bg-red-50 border border-red-200 rounded-xl p-8">
         <h2 className="text-2xl font-bold text-red-800 mb-4">Emergency Resources</h2>
-        <p className="text-red-700 mb-6">
+        <p className="text-base text-red-700 mb-6">
           If you're experiencing a mental health crisis or having thoughts of self-harm, please reach out immediately:
         </p>
         
         <div className="grid md:grid-cols-3 gap-4">
           <a
             href="tel:988"
-            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition-colors text-base"
           >
             Crisis Lifeline: 988
           </a>
           
           <a
             href="tel:911"
-            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+            className="flex items-center justify-center px-6 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition-colors text-base"
           >
             Emergency: 911
           </a>
           
           <a
             href="/chatbot"
-            className="flex items-center justify-center px-6 py-3 border-2 border-red-600 text-red-600 font-medium rounded-md hover:bg-red-50 transition-colors"
+            className="flex items-center justify-center px-6 py-3 border-2 border-red-600 text-red-600 font-semibold rounded-md hover:bg-red-50 transition-colors text-base"
           >
             Chat Support Now
           </a>

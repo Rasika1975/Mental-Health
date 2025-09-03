@@ -231,7 +231,7 @@ const ForumPage = () => {
                   <FiUser className="text-white text-lg" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">{post.author}</h3>
+                  <h3 className="text-lg font-semibold">{post.author}</h3>
                   <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
                     <FiClock />
                     <span>{post.timestamp}</span>
@@ -252,10 +252,10 @@ const ForumPage = () => {
           {/* Post Content */}
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-4">{post.title}</h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">{post.fullContent}</p>
+            <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">{post.fullContent}</p>
 
             {/* Post Stats */}
-            <div className="flex items-center space-x-6 mb-6 text-sm">
+            <div className="flex items-center space-x-6 mb-6 text-sm text-gray-500 dark:text-gray-400">
               <span className="flex items-center space-x-1">
                 <FiHeart className="text-red-500" />
                 <span>{post.likes} likes</span>
@@ -272,7 +272,7 @@ const ForumPage = () => {
 
             {/* Replies Section */}
             <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-              <h4 className="font-bold text-lg mb-4">Replies ({post.replies})</h4>
+              <h4 className="text-lg font-semibold mb-4">Replies ({post.replies})</h4>
               
               {post.recentReplies?.map((reply, index) => (
                 <div key={index} className="mb-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
@@ -280,10 +280,10 @@ const ForumPage = () => {
                     <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
                       <FiUser className="text-white text-sm" />
                     </div>
-                    <span className="font-medium">{reply.author}</span>
+                    <span className="text-base font-semibold">{reply.author}</span>
                     <span className="text-sm text-gray-500">{reply.timestamp}</span>
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300">{reply.content}</p>
+                  <p className="text-base text-gray-700 dark:text-gray-300">{reply.content}</p>
                 </div>
               ))}
 
@@ -294,13 +294,13 @@ const ForumPage = () => {
                   onChange={(e) => setReplyText(e.target.value)}
                   placeholder="Share your thoughts and support..."
                   rows={3}
-                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-base"
                 />
                 <div className="flex justify-between items-center mt-3">
                   <span className="text-sm text-gray-500">Remember to be kind and supportive</span>
                   <button 
                     disabled={!replyText.trim()}
-                    className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors"
+                    className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold text-base rounded-lg transition-colors"
                   >
                     <FiSend />
                     <span>Reply</span>
@@ -321,14 +321,14 @@ const ForumPage = () => {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <FiLifeBuoy className="text-xl" />
-            <span className="font-medium">Need immediate support?</span>
+            <span className="text-sm font-semibold">Need immediate support?</span>
           </div>
           <div className="flex items-center space-x-4">
-            <a href="tel:988" className="flex items-center space-x-1 hover:underline">
+            <a href="tel:988" className="flex items-center space-x-1 hover:underline text-sm">
               <FiPhone />
               <span>Crisis Line: 988</span>
             </a>
-            <button className="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-md transition-colors">
+            <button className="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-md transition-colors text-sm font-semibold">
               Chat Now
             </button>
           </div>
@@ -345,10 +345,10 @@ const ForumPage = () => {
                 <FiUsers className="text-4xl text-blue-600 dark:text-blue-400" />
               </div>
             </div>
-            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Peer Support Forum
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base text-gray-700 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
               Connect with fellow students in a safe, anonymous environment. Share experiences, 
               get support, and help others on their mental health journey.
             </p>
@@ -359,22 +359,22 @@ const ForumPage = () => {
             <div className={`${cardClasses} rounded-xl p-4 text-center shadow-lg`}>
               <FiUsers className="text-2xl text-blue-500 mx-auto mb-2" />
               <div className="text-2xl font-bold">342</div>
-              <div className="text-sm text-gray-500">Active Users</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Active Users</div>
             </div>
             <div className={`${cardClasses} rounded-xl p-4 text-center shadow-lg`}>
               <FiMessageSquare className="text-2xl text-green-500 mx-auto mb-2" />
               <div className="text-2xl font-bold">28</div>
-              <div className="text-sm text-gray-500">Posts Today</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Posts Today</div>
             </div>
             <div className={`${cardClasses} rounded-xl p-4 text-center shadow-lg`}>
               <FiHeart className="text-2xl text-red-500 mx-auto mb-2" />
               <div className="text-2xl font-bold">156</div>
-              <div className="text-sm text-gray-500">Support Given</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Support Given</div>
             </div>
             <div className={`${cardClasses} rounded-xl p-4 text-center shadow-lg`}>
               <FiStar className="text-2xl text-yellow-500 mx-auto mb-2" />
               <div className="text-2xl font-bold">4.9</div>
-              <div className="text-sm text-gray-500">Community Rating</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Community Rating</div>
             </div>
           </div>
         </div>
@@ -392,7 +392,7 @@ const ForumPage = () => {
                 placeholder="Search posts and discussions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
               />
             </div>
 
@@ -402,7 +402,7 @@ const ForumPage = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
               >
                 <option value="recent">Most Recent</option>
                 <option value="popular">Most Popular</option>
@@ -420,7 +420,7 @@ const ForumPage = () => {
               {/* New Post Button */}
               <button
                 onClick={() => setShowNewPostModal(true)}
-                className="flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+                className="flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold text-base rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
               >
                 <FiPlus />
                 <span>New Post</span>
@@ -438,8 +438,8 @@ const ForumPage = () => {
                 <div className="flex items-start space-x-3">
                   <FiShield className="text-green-600 dark:text-green-400 text-lg mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-green-800 dark:text-green-400 text-sm">Safe Space</h4>
-                    <p className="text-green-700 dark:text-green-300 text-xs mt-1">
+                    <h4 className="text-lg font-semibold text-green-800 dark:text-green-400">Safe Space</h4>
+                    <p className="text-sm text-green-700 dark:text-green-300 mt-1">
                       Moderated 24/7. Anonymous posting. Personal info protected.
                     </p>
                   </div>
@@ -447,7 +447,7 @@ const ForumPage = () => {
               </div>
 
               {/* Categories */}
-              <h3 className="text-lg font-bold mb-4">Categories</h3>
+              <h3 className="text-2xl font-bold mb-4">Categories</h3>
               <div className="space-y-2">
                 {forumCategories.map((category) => {
                   const Icon = category.icon;
@@ -465,9 +465,9 @@ const ForumPage = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                           <Icon className="text-lg" />
-                          <span className="font-medium">{category.label}</span>
+                          <span className="text-base font-semibold">{category.label}</span>
                         </div>
-                        <span className={`text-xs px-2 py-1 rounded-full ${
+                        <span className={`text-sm px-2 py-1 rounded-full ${
                           isActive ? 'bg-white/20' : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-300'
                         }`}>
                           {category.count}
@@ -480,11 +480,11 @@ const ForumPage = () => {
 
               {/* Community Guidelines */}
               <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <h4 className="font-semibold mb-3 flex items-center space-x-2">
+                <h4 className="text-lg font-semibold mb-3 flex items-center space-x-2">
                   <FiShield className="text-blue-500" />
                   <span>Guidelines</span>
                 </h4>
-                <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
+                <ul className="text-base text-gray-700 dark:text-gray-400 space-y-2">
                   <li className="flex items-start space-x-2">
                     <span className="text-green-500 mt-1">•</span>
                     <span>Be respectful and supportive</span>
@@ -510,12 +510,12 @@ const ForumPage = () => {
           <div className="lg:w-3/4">
             {/* Results Info */}
             <div className="flex items-center justify-between mb-6">
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-base text-gray-700 dark:text-gray-300">
                 {filteredPosts.length} posts in {selectedCategory === 'all' ? 'all categories' : forumCategories.find(c => c.id === selectedCategory)?.label}
               </p>
               <div className="flex items-center space-x-2 text-sm">
                 {savedPosts.size > 0 && (
-                  <span className="flex items-center space-x-1 text-blue-600 dark:text-blue-400">
+                  <span className="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400">
                     <FiBookmark />
                     <span>{savedPosts.size} saved</span>
                   </span>
@@ -545,7 +545,7 @@ const ForumPage = () => {
                           </div>
                           <div>
                             <div className="flex items-center space-x-2">
-                              <h3 className="font-bold text-lg">{post.author}</h3>
+                              <h3 className="text-lg font-semibold">{post.author}</h3>
                               {post.isVerified && <FiShield className="text-blue-500" title="Verified Helper" />}
                             </div>
                             <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
@@ -557,7 +557,7 @@ const ForumPage = () => {
                           </div>
                         </div>
                         {moodData && (
-                          <div className={`text-xs font-semibold px-3 py-1 rounded-full text-white bg-gradient-to-r ${getMoodColor(post.mood)}`}>
+                          <div className={`text-sm font-semibold px-3 py-1 rounded-full text-white bg-gradient-to-r ${getMoodColor(post.mood)}`}>
                             {moodData.label}
                           </div>
                         )}
@@ -565,7 +565,7 @@ const ForumPage = () => {
 
                       {/* Post Title */}
                       <h2 
-                        className="text-xl font-bold mb-2 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="text-2xl font-bold mb-2 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                         onClick={() => setSelectedPost(post)}
                       >
                         {post.title}
@@ -574,13 +574,13 @@ const ForumPage = () => {
 
                     {/* Post Content */}
                     <div className="px-6 pb-4">
-                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
                         {isExpanded ? post.fullContent : post.content}
                       </p>
                       {!isExpanded && (
                         <button 
                           onClick={() => toggleExpanded(post.id)}
-                          className="text-blue-600 dark:text-blue-400 font-semibold mt-2 hover:underline"
+                          className="text-sm font-semibold text-blue-600 dark:text-blue-400 mt-2 hover:underline"
                         >
                           Read more
                         </button>
@@ -591,12 +591,12 @@ const ForumPage = () => {
                     <div className="px-6 pb-4">
                       <div className="flex items-center space-x-2 mb-4">
                         {post.tags.map(tag => (
-                          <span key={tag} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-full">
+                          <span key={tag} className="text-sm bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 px-2 py-1 rounded-full">
                             #{tag}
                           </span>
                         ))}
                       </div>
-                      <div className="flex items-center justify-between text-gray-500 dark:text-gray-400">
+                      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
                         <div className="flex items-center space-x-6">
                           <button onClick={() => toggleLike(post.id)} className={`flex items-center space-x-1 hover:text-red-500 transition-colors ${isLiked ? 'text-red-500' : ''}`}>
                             <FiHeart />
@@ -627,7 +627,7 @@ const ForumPage = () => {
 
                     {isExpanded && (
                       <div className="bg-gray-50 dark:bg-gray-700/50 p-6 border-t border-gray-200 dark:border-gray-600">
-                        <h4 className="font-bold mb-4">Recent Replies</h4>
+                        <h4 className="text-lg font-semibold mb-4">Recent Replies</h4>
                         <div className="space-y-4">
                           {post.recentReplies?.map((reply, index) => (
                             <div key={index} className="flex items-start space-x-3">
@@ -635,16 +635,16 @@ const ForumPage = () => {
                                 <FiUser className="text-white text-sm" />
                               </div>
                               <div>
-                                <span className="font-medium">{reply.author}</span>
-                                <span className="text-xs text-gray-500 ml-2">{reply.timestamp}</span>
-                                <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">{reply.content}</p>
+                                <span className="text-base font-semibold">{reply.author}</span>
+                                <span className="text-sm text-gray-500 ml-2">{reply.timestamp}</span>
+                                <p className="text-base text-gray-700 dark:text-gray-300 mt-1">{reply.content}</p>
                               </div>
                             </div>
                           ))}
                         </div>
                         <button 
                           onClick={() => toggleExpanded(post.id)}
-                          className="text-blue-600 dark:text-blue-400 font-semibold mt-4 hover:underline flex items-center space-x-1"
+                          className="text-sm font-semibold text-blue-600 dark:text-blue-400 mt-4 hover:underline flex items-center space-x-1"
                         >
                           <FiChevronUp />
                           <span>Show less</span>
@@ -676,20 +676,20 @@ const ForumPage = () => {
                   placeholder="Post Title"
                   value={newPost.title}
                   onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
                 />
                 <textarea
                   placeholder="Share your thoughts... (be kind and supportive)"
                   rows="6"
                   value={newPost.content}
                   onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
                 />
                 <div className="flex flex-col sm:flex-row gap-4">
                   <select
                     value={newPost.category}
                     onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}
-                    className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
                   >
                     {forumCategories.filter(c => c.id !== 'all').map(c => (
                       <option key={c.id} value={c.id}>{c.label}</option>
@@ -698,7 +698,7 @@ const ForumPage = () => {
                   <select
                     value={newPost.mood}
                     onChange={(e) => setNewPost({ ...newPost, mood: e.target.value })}
-                    className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
                   >
                     <option value="">Select your mood (optional)</option>
                     {moodOptions.map(m => (
@@ -711,7 +711,7 @@ const ForumPage = () => {
                 <button
                   onClick={handleNewPost}
                   disabled={!newPost.title.trim() || !newPost.content.trim()}
-                  className="flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center space-x-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold text-base rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <FiSend />
                   <span>Post Anonymously</span>
