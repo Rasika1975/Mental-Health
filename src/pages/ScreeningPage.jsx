@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiCheckCircle, FiAlertCircle, FiHeart, FiArrowRight, FiRefreshCw } from 'react-icons/fi';
+import { FiCheckCircle, FiAlertCircle, FiHeart, FiArrowRight, FiRefreshCw, FiMessageCircle, FiCalendar, FiUsers, FiInfo } from 'react-icons/fi';
 
 const ScreeningPage = () => {
   const [currentAssessment, setCurrentAssessment] = useState('selection');
@@ -124,9 +124,9 @@ const ScreeningPage = () => {
   if (currentAssessment === 'selection') {
     return (
       <div className="max-w-6xl mx-auto p-6">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Mental Health Self-Assessment</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="text-center mb-16">
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">Mental Health Self-Assessment</h1>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Take a confidential screening to better understand your mental health. 
             These assessments are not diagnostic tools but can help identify if you might benefit from professional support.
           </p>
@@ -145,13 +145,13 @@ const ScreeningPage = () => {
                   <Icon className="text-white text-2xl" />
                 </div>
                 
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{assessment.title}</h3>
-                <p className="text-gray-600 mb-4">{assessment.description}</p>
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">{assessment.title}</h3>
+                <p className="text-base text-gray-700 mb-4">{assessment.description}</p>
                 <p className="text-sm text-gray-500 mb-4">
                   {assessment.questions.length} questions • Takes 3-5 minutes
                 </p>
                 
-                <div className="flex items-center text-blue-600 font-medium group-hover:text-purple-600 transition-colors">
+                <div className="flex items-center text-blue-600 font-semibold group-hover:text-purple-600 transition-colors">
                   Start Assessment
                   <FiArrowRight className="ml-2" />
                 </div>
@@ -166,7 +166,7 @@ const ScreeningPage = () => {
             <FiAlertCircle className="text-yellow-600 text-xl mt-0.5" />
             <div>
               <h3 className="text-lg font-semibold text-yellow-800 mb-2">Important Disclaimer</h3>
-              <p className="text-yellow-700">
+              <p className="text-base text-yellow-700">
                 These screening tools are for educational purposes only and do not replace professional mental health diagnosis or treatment. 
                 If you're experiencing thoughts of self-harm or suicide, please seek immediate help by calling emergency services or a crisis hotline.
               </p>
@@ -185,8 +185,8 @@ const ScreeningPage = () => {
             <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
               <FiCheckCircle className="text-white text-2xl" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Assessment Complete</h1>
-            <p className="text-gray-600">{results.assessmentTitle}</p>
+            <h1 className="text-2xl font-bold text-gray-800 mb-2">Assessment Complete</h1>
+            <p className="text-base text-gray-600">{results.assessmentTitle}</p>
           </div>
 
           <div className="bg-gray-50 rounded-lg p-6 mb-8">
@@ -205,21 +205,21 @@ const ScreeningPage = () => {
             </div>
             
             <div className="text-center">
-              <span className={`text-xl font-bold ${results.color}`}>
-                {results.severity} Level
+              <span className={`text-lg font-semibold ${results.color}`}>
+                {results.severity}
               </span>
             </div>
           </div>
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
             <h3 className="text-lg font-semibold text-blue-800 mb-3">Recommendations</h3>
-            <p className="text-blue-700">{results.recommendation}</p>
+            <p className="text-base text-blue-700">{results.recommendation}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-white border border-gray-200 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Immediate Resources</h3>
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-base text-gray-700">
                 <li>• AI Chatbot for instant support</li>
                 <li>• Breathing exercises and relaxation guides</li>
                 <li>• Peer support forum</li>
@@ -229,7 +229,7 @@ const ScreeningPage = () => {
             
             <div className="bg-white border border-gray-200 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Professional Support</h3>
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-base text-gray-700">
                 <li>• Book counselor appointment</li>
                 <li>• Campus mental health services</li>
                 <li>• Group therapy sessions</li>
@@ -241,7 +241,7 @@ const ScreeningPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={resetAssessment}
-              className="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 transition-colors"
+              className="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-md hover:bg-gray-50 transition-colors"
             >
               <FiRefreshCw className="mr-2" />
               Take Another Assessment
@@ -250,7 +250,7 @@ const ScreeningPage = () => {
             {(results.severity === 'Moderate' || results.severity === 'Moderately Severe' || results.severity === 'Severe') && (
               <a
                 href="/booking"
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-md hover:from-blue-700 hover:to-purple-700 transition-all"
+                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-md hover:from-blue-700 hover:to-purple-700 transition-all"
               >
                 Book Counselor Appointment
                 <FiArrowRight className="ml-2" />
@@ -273,13 +273,13 @@ const ScreeningPage = () => {
         <div className="mb-8">
           <button
             onClick={() => setCurrentAssessment('selection')}
-            className="text-blue-600 hover:text-blue-700 mb-4"
+            className="text-sm font-medium text-blue-600 hover:text-blue-700 mb-4"
           >
             ← Back to Assessments
           </button>
           
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{assessment.title}</h1>
-          <p className="text-gray-600 mb-4">{assessment.description}</p>
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">{assessment.title}</h1>
+          <p className="text-base text-gray-700 mb-4">{assessment.description}</p>
           
           {/* Progress Bar */}
           <div className="w-full bg-gray-200 rounded-full h-2">
@@ -295,7 +295,7 @@ const ScreeningPage = () => {
 
         {/* Instructions */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
-          <p className="text-blue-700">
+          <p className="text-base text-blue-700">
             <strong>Instructions:</strong> Over the last 2 weeks, how often have you been bothered by any of the following problems? 
             Please answer honestly - your responses are completely confidential.
           </p>
@@ -336,7 +336,7 @@ const ScreeningPage = () => {
                         <div className="w-2 h-2 bg-white rounded-full"></div>
                       )}
                     </div>
-                    <span className="text-sm font-medium">{option.label}</span>
+                    <span className="text-sm text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
@@ -349,7 +349,7 @@ const ScreeningPage = () => {
           <button
             onClick={calculateResults}
             disabled={!canSubmit}
-            className={`inline-flex items-center px-8 py-3 font-medium rounded-md transition-all duration-200 ${
+            className={`inline-flex items-center px-8 py-3 font-semibold rounded-md transition-all duration-200 ${
               canSubmit
                 ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transform hover:scale-105'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -368,7 +368,7 @@ const ScreeningPage = () => {
 
         {/* Privacy Notice */}
         <div className="mt-8 bg-gray-50 rounded-lg p-4">
-          <p className="text-sm text-gray-600 text-center">
+          <p className="text-sm text-gray-500 text-center">
             🔒 <strong>Privacy Protected:</strong> Your responses are encrypted and stored securely. 
             This assessment is for your personal awareness and is not shared with anyone without your explicit consent.
           </p>

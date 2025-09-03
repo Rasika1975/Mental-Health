@@ -141,8 +141,8 @@ const CounselorDashboard = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Counselor Dashboard</h1>
-        <p className="text-gray-600 mt-1">Manage your appointments and student sessions</p>
+        <h1 className="text-2xl font-bold text-gray-900">Counselor Dashboard</h1>
+        <p className="text-base text-gray-700 mt-1">Manage your appointments and student sessions</p>
       </div>
 
       {/* Stats Cards */}
@@ -153,7 +153,7 @@ const CounselorDashboard = () => {
             <div key={index} className="bg-white rounded-xl p-6 shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+                  <p className="text-sm text-gray-500 font-medium">{stat.title}</p>
                   <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
                 </div>
                 
@@ -170,12 +170,12 @@ const CounselorDashboard = () => {
         {/* Today's Schedule */}
         <div className="lg:col-span-2 bg-white rounded-xl shadow-lg p-6">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-gray-900">Today's Schedule</h3>
+            <h3 className="text-2xl font-bold text-gray-900">Today's Schedule</h3>
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
             />
           </div>
 
@@ -191,8 +191,8 @@ const CounselorDashboard = () => {
                       </div>
                       
                       <div>
-                        <h4 className="font-medium text-gray-900">{appointment.studentId}</h4>
-                        <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <h4 className="text-lg font-semibold text-gray-800">{appointment.studentId}</h4>
+                        <div className="flex items-center space-x-2 text-sm text-gray-500">
                           <FiClock />
                           <span>{appointment.time} ({appointment.duration})</span>
                         </div>
@@ -200,42 +200,42 @@ const CounselorDashboard = () => {
                     </div>
 
                     <div className="flex flex-col items-end space-y-2">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(appointment.status)}`}>
+                      <span className={`px-2 py-1 rounded-full text-sm font-medium ${getStatusColor(appointment.status)}`}>
                         {appointment.status.replace('-', ' ').toUpperCase()}
                       </span>
                       
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getUrgencyColor(appointment.urgency)}`}>
+                      <span className={`px-2 py-1 rounded-full text-sm font-medium ${getUrgencyColor(appointment.urgency)}`}>
                         {appointment.urgency.toUpperCase()}
                       </span>
                       
                       {appointment.isNewStudent && (
-                        <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full font-medium">
+                        <span className="px-2 py-1 bg-orange-100 text-orange-700 text-sm rounded-full font-medium">
                           NEW STUDENT
                         </span>
                       )}
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-700 mb-3">{appointment.notes}</p>
+                  <p className="text-base text-gray-700 mb-3">{appointment.notes}</p>
                   
                   {appointment.lastSession && (
-                    <p className="text-xs text-gray-500 mb-3">
+                    <p className="text-sm text-gray-500 mb-3">
                       Last session: {appointment.lastSession}
                     </p>
                   )}
 
                   <div className="flex space-x-3">
-                    <button className="flex items-center px-3 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors">
+                    <button className="flex items-center px-3 py-2 bg-blue-600 text-white text-base font-semibold rounded-md hover:bg-blue-700 transition-colors">
                       <FiVideo className="mr-1" />
                       {appointment.status === 'in-progress' ? 'Join Session' : 'Start Session'}
                     </button>
                     
-                    <button className="flex items-center px-3 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                    <button className="flex items-center px-3 py-2 border border-gray-300 text-gray-700 text-base font-semibold rounded-md hover:bg-gray-50 transition-colors">
                       <FiFileText className="mr-1" />
                       View Notes
                     </button>
                     
-                    <button className="flex items-center px-3 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors">
+                    <button className="flex items-center px-3 py-2 border border-gray-300 text-gray-700 text-base font-semibold rounded-md hover:bg-gray-50 transition-colors">
                       <FiMessageSquare className="mr-1" />
                       Message
                     </button>
@@ -250,20 +250,20 @@ const CounselorDashboard = () => {
         <div className="space-y-6">
           {/* Quick Actions */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Actions</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Quick Actions</h3>
             
             <div className="space-y-3">
-              <button className="w-full flex items-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="w-full flex items-center px-4 py-3 bg-blue-600 text-white text-base font-semibold rounded-lg hover:bg-blue-700 transition-colors">
                 <FiCalendar className="mr-3" />
                 Add Available Hours
               </button>
               
-              <button className="w-full flex items-center px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="w-full flex items-center px-4 py-3 border border-gray-300 text-gray-700 text-base font-semibold rounded-lg hover:bg-gray-50 transition-colors">
                 <FiFileText className="mr-3" />
                 Create Session Notes
               </button>
               
-              <button className="w-full flex items-center px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="w-full flex items-center px-4 py-3 border border-gray-300 text-gray-700 text-base font-semibold rounded-lg hover:bg-gray-50 transition-colors">
                 <FiUser className="mr-3" />
                 View Student Profiles
               </button>
@@ -272,7 +272,7 @@ const CounselorDashboard = () => {
 
           {/* Recent Activity */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Recent Activity</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Recent Activity</h3>
             
             <div className="space-y-3">
               {recentActivity.map((activity, index) => (
@@ -282,15 +282,15 @@ const CounselorDashboard = () => {
                   }`}></div>
                   
                   <div className="flex-1">
-                    <p className="text-sm text-gray-900">{activity.message}</p>
-                    <p className="text-xs text-gray-500">{activity.time}</p>
+                    <p className="text-base text-gray-700">{activity.message}</p>
+                    <p className="text-sm text-gray-500">{activity.time}</p>
                   </div>
                 </div>
               ))}
             </div>
             
             <div className="mt-4 text-center">
-              <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+              <button className="text-blue-600 hover:text-blue-700 text-base font-semibold">
                 View All Activity
               </button>
             </div>
