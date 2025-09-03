@@ -9,7 +9,7 @@ import ResourcesPage from './pages/ResourcesPage';
 import ForumPage from './pages/ForumPage';
 import BookingPage from './pages/BookingPage';
 import CounselorDashboard from './pages/CounselorDashboard';
-import AdminDashboard from './pages/AdminDashboard';
+
 
 function App() {
   return (
@@ -29,7 +29,6 @@ function App() {
           {/* Dashboard Routes with Dashboard Layout */}
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route path="counselor" element={<CounselorDashboard />} />
-            <Route path="admin" element={<AdminDashboard />} />
           </Route>
         </Routes>
       </div>

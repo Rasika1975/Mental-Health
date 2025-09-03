@@ -17,49 +17,25 @@ const BookingPage = () => {
   const counselors = [
     {
       id: 1,
-      name: 'Dr. Sarah Johnson',
+      name: 'Dr. Aastha',
       title: 'Licensed Clinical Psychologist',
       specialization: 'Anxiety, Depression, Academic Stress',
-      experience: '8 years',
+      experience: '40+ years',
       rating: 4.9,
       reviews: 124,
       image: 'https://via.placeholder.com/150x150/3B82F6/FFFFFF?text=SJ',
       availability: 'Available Today',
-      languages: ['English', 'Spanish'],
+      languages: ['English', 'Spanish','hindi','marathi'],
       sessionTypes: ['video', 'phone', 'in-person']
     },
-    {
-      id: 2,
-      name: 'Dr. Rajesh Patel',
-      title: 'Counseling Psychologist',
-      specialization: 'Social Anxiety, Relationship Issues',
-      experience: '12 years',
-      rating: 4.8,
-      reviews: 89,
-      image: 'https://via.placeholder.com/150x150/10B981/FFFFFF?text=RP',
-      availability: 'Available Tomorrow',
-      languages: ['English', 'Hindi', 'Gujarati'],
-      sessionTypes: ['video', 'phone', 'in-person']
-    },
-    {
-      id: 3,
-      name: 'Dr. Emily Chen',
-      title: 'Student Wellness Counselor',
-      specialization: 'Academic Pressure, Life Transitions',
-      experience: '6 years',
-      rating: 4.9,
-      reviews: 156,
-      image: 'https://via.placeholder.com/150x150/8B5CF6/FFFFFF?text=EC',
-      availability: 'Available This Week',
-      languages: ['English', 'Mandarin'],
-      sessionTypes: ['video', 'phone', 'in-person']
-    }
+    
   ];
 
   const timeSlots = [
     '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
     '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM'
   ];
+  
 
   const getNextWeekDates = () => {
     const dates = [];

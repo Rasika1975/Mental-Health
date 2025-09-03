@@ -7,9 +7,9 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
-      <div className="lg:ml-64">
-        <main className="min-h-screen">
-          <div>
+            <div className="lg:ml-60">
+        <main className="">
+          <div className='w-full'>
             <Outlet />
           </div>
         </main>
