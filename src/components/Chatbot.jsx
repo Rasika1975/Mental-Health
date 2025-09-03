@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
-  FiSend, 
+  FiSend,  
   FiMessageCircle, FiThumbsUp, FiThumbsDown, FiCopy, FiDownload,
   FiSettings, FiVolume2, FiVolumeX, FiMoreHorizontal, FiStar,
   FiAlertTriangle, FiCheckCircle, FiInfo, FiZap
@@ -58,7 +58,7 @@ const Chatbot = () => {
     // Handle quick actions
     if (lowerMessage.includes('breathing') || lowerMessage.includes('breath')) {
       return {
-        text: "Let's do a calming breathing exercise together:\n\n🌬️ **4-7-8 Breathing Technique**\n\n1. Breathe in through your nose for 4 counts\n2. Hold your breath for 7 counts\n3. Exhale through your mouth for 8 counts\n4. Repeat 3-4 times\n\nThis activates your parasympathetic nervous system and helps reduce anxiety. How are you feeling after trying this?",
+        text: "Let's do a calming breathing exercise together:\n\n🌬️ *4-7-8 Breathing Technique*\n\n1. Breathe in through your nose for 4 counts\n2. Hold your breath for 7 counts\n3. Exhale through your mouth for 8 counts\n4. Repeat 3-4 times\n\nThis activates your parasympathetic nervous system and helps reduce anxiety. How are you feeling after trying this?",
         severity: 'mild',
         type: 'exercise'
       };
@@ -66,7 +66,7 @@ const Chatbot = () => {
 
     if (lowerMessage.includes('mood') || lowerMessage.includes('check')) {
       return {
-        text: "Let's do a quick mood check-in:\n\n📊 **Rate your current mood (1-10):**\n• 1-3: Really struggling\n• 4-6: Having a tough time\n• 7-8: Doing okay\n• 9-10: Feeling great\n\nWhat's contributing to your mood today? Sometimes identifying the factors helps us work through them together.",
+        text: "Let's do a quick mood check-in:\n\n📊 *Rate your current mood (1-10):*\n• 1-3: Really struggling\n• 4-6: Having a tough time\n• 7-8: Doing okay\n• 9-10: Feeling great\n\nWhat's contributing to your mood today? Sometimes identifying the factors helps us work through them together.",
         severity: 'mild',
         type: 'assessment'
       };
@@ -74,7 +74,7 @@ const Chatbot = () => {
 
     if (lowerMessage.includes('crisis') || lowerMessage.includes('emergency')) {
       return {
-        text: "🚨 **CRISIS RESOURCES** 🚨\n\n**Immediate Help:**\n• National Suicide Prevention Lifeline: **988**\n• Crisis Text Line: Text **HOME** to 741741\n• Campus Emergency: Contact campus security\n\n**You are not alone.** These feelings are temporary, and help is available 24/7. Please reach out to someone right now.",
+        text: "🚨 *CRISIS RESOURCES* 🚨\n\n*Immediate Help:\n• National Suicide Prevention Lifeline: **988\n• Crisis Text Line: Text **HOME* to 741741\n• Campus Emergency: Contact campus security\n\n*You are not alone.* These feelings are temporary, and help is available 24/7. Please reach out to someone right now.",
         severity: 'crisis',
         type: 'crisis'
       };
@@ -82,7 +82,7 @@ const Chatbot = () => {
     
     if (lowerMessage.includes('anxious') || lowerMessage.includes('anxiety') || lowerMessage.includes('panic')) {
       return {
-        text: "I understand you're feeling anxious. Here are some immediate techniques that can help:\n\n🧘 **Immediate Relief:**\n✓ 4-7-8 breathing: Inhale 4, hold 7, exhale 8\n✓ 5-4-3-2-1 grounding: 5 things you see, 4 you can touch, 3 you hear, 2 you smell, 1 you taste\n✓ Progressive muscle relaxation\n\n💡 **Remember:** Anxiety is temporary and you have the strength to get through this. Your body is trying to protect you.\n\nWould you like me to guide you through a breathing exercise, or would you prefer to talk about what's making you anxious?",
+        text: "I understand you're feeling anxious. Here are some immediate techniques that can help:\n\n🧘 *Immediate Relief:\n✓ 4-7-8 breathing: Inhale 4, hold 7, exhale 8\n✓ 5-4-3-2-1 grounding: 5 things you see, 4 you can touch, 3 you hear, 2 you smell, 1 you taste\n✓ Progressive muscle relaxation\n\n💡 **Remember:* Anxiety is temporary and you have the strength to get through this. Your body is trying to protect you.\n\nWould you like me to guide you through a breathing exercise, or would you prefer to talk about what's making you anxious?",
         severity: 'moderate',
         type: 'support'
       };
@@ -90,7 +90,7 @@ const Chatbot = () => {
     
     if (lowerMessage.includes('sleep') || lowerMessage.includes('insomnia')) {
       return {
-        text: "Sleep issues can really affect your mental health. Here are some evidence-based strategies:\n\n🌙 **Sleep Hygiene Tips:**\n✓ Create a consistent bedtime routine (same time every night)\n✓ Avoid screens 1 hour before bed (blue light disrupts melatonin)\n✓ Keep your room cool (65-68°F) and dark\n✓ Try progressive muscle relaxation or meditation\n✓ Avoid caffeine after 2 PM\n\n📊 **Sleep Tracking:** Consider keeping a sleep diary to identify patterns.\n\nIf sleep problems persist for more than 2 weeks, I'd recommend speaking with a counselor. Would you like me to help you book an appointment?",
+        text: "Sleep issues can really affect your mental health. Here are some evidence-based strategies:\n\n🌙 *Sleep Hygiene Tips:\n✓ Create a consistent bedtime routine (same time every night)\n✓ Avoid screens 1 hour before bed (blue light disrupts melatonin)\n✓ Keep your room cool (65-68°F) and dark\n✓ Try progressive muscle relaxation or meditation\n✓ Avoid caffeine after 2 PM\n\n📊 **Sleep Tracking:* Consider keeping a sleep diary to identify patterns.\n\nIf sleep problems persist for more than 2 weeks, I'd recommend speaking with a counselor. Would you like me to help you book an appointment?",
         severity: 'mild',
         type: 'advice'
       };
@@ -98,7 +98,7 @@ const Chatbot = () => {
     
     if (lowerMessage.includes('overwhelmed') || lowerMessage.includes('stress')) {
       return {
-        text: "Feeling overwhelmed is completely normal, especially during college. Let's break this down:\n\n📋 **Stress Management Strategies:**\n✓ List your tasks and prioritize them (use the Eisenhower Matrix)\n✓ Take breaks every 45-60 minutes (Pomodoro Technique)\n✓ Practice saying 'no' to additional commitments\n✓ Remember: you don't have to be perfect\n✓ Try the 2-minute rule: if it takes less than 2 minutes, do it now\n\n💭 **Mindset Shift:** Progress over perfection. What's the biggest source of stress for you right now? Sometimes talking through it helps.",
+        text: "Feeling overwhelmed is completely normal, especially during college. Let's break this down:\n\n📋 *Stress Management Strategies:\n✓ List your tasks and prioritize them (use the Eisenhower Matrix)\n✓ Take breaks every 45-60 minutes (Pomodoro Technique)\n✓ Practice saying 'no' to additional commitments\n✓ Remember: you don't have to be perfect\n✓ Try the 2-minute rule: if it takes less than 2 minutes, do it now\n\n💭 **Mindset Shift:* Progress over perfection. What's the biggest source of stress for you right now? Sometimes talking through it helps.",
         severity: 'moderate',
         type: 'support'
       };
@@ -106,7 +106,7 @@ const Chatbot = () => {
     
     if (lowerMessage.includes('lonely') || lowerMessage.includes('isolated')) {
       return {
-        text: "Loneliness is tough, but you're not alone in feeling this way. Many students experience this:\n\n🤝 **Connection Strategies:**\n✓ Consider joining our peer support forum\n✓ Look into campus clubs or activities that interest you\n✓ Try reaching out to one person today, even briefly\n✓ Remember: quality connections matter more than quantity\n✓ Join study groups or academic clubs\n\n💡 **Remember:** It's okay to feel lonely sometimes. The goal is to build meaningful connections gradually. Would you like me to help you find ways to connect with others on campus?",
+        text: "Loneliness is tough, but you're not alone in feeling this way. Many students experience this:\n\n🤝 *Connection Strategies:\n✓ Consider joining our peer support forum\n✓ Look into campus clubs or activities that interest you\n✓ Try reaching out to one person today, even briefly\n✓ Remember: quality connections matter more than quantity\n✓ Join study groups or academic clubs\n\n💡 **Remember:* It's okay to feel lonely sometimes. The goal is to build meaningful connections gradually. Would you like me to help you find ways to connect with others on campus?",
         severity: 'moderate',
         type: 'support'
       };
@@ -114,7 +114,7 @@ const Chatbot = () => {
 
     if (lowerMessage.includes('depressed') || lowerMessage.includes('depression') || lowerMessage.includes('sad')) {
       return {
-        text: "I hear that you're feeling depressed, and I want you to know that your feelings are valid. Depression is a real condition that affects many people.\n\n💙 **Immediate Support:**\n✓ Practice self-compassion - be kind to yourself\n✓ Try to maintain a routine, even a simple one\n✓ Get some sunlight or natural light\n✓ Consider gentle movement or a short walk\n✓ Reach out to someone you trust\n\n🔍 **Professional Help:** If these feelings persist or worsen, please consider speaking with a counselor. Depression is treatable, and you don't have to face it alone.\n\nWould you like me to help you find resources or book a counseling session?",
+        text: "I hear that you're feeling depressed, and I want you to know that your feelings are valid. Depression is a real condition that affects many people.\n\n💙 *Immediate Support:\n✓ Practice self-compassion - be kind to yourself\n✓ Try to maintain a routine, even a simple one\n✓ Get some sunlight or natural light\n✓ Consider gentle movement or a short walk\n✓ Reach out to someone you trust\n\n🔍 **Professional Help:* If these feelings persist or worsen, please consider speaking with a counselor. Depression is treatable, and you don't have to face it alone.\n\nWould you like me to help you find resources or book a counseling session?",
         severity: 'moderate',
         type: 'support'
       };
